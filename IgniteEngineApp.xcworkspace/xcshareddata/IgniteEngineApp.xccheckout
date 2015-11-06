@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>42478144-0248-4E41-A2DD-9B53CDA267E5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>IgniteEngineApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>369330A8BA00E7CFDA52C7307E7751CE3DE90CEB</key>
+		<string>https://github.com/ApigeeDelta/TheBigZ.git</string>
+		<key>6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30</key>
+		<string>https://github.com/ApigeeDelta/VZV-DemoDay.git</string>
+		<key>BFBFCC10C050BE3C828F84930A08E73A0AD00086</key>
+		<string>https://github.com/ApigeeDelta/VTARewards.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>IgniteEngineApp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>369330A8BA00E7CFDA52C7307E7751CE3DE90CEB</key>
+		<string>..</string>
+		<key>6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30</key>
+		<string>../../VZV-DemoDay</string>
+		<key>BFBFCC10C050BE3C828F84930A08E73A0AD00086</key>
+		<string>../../VTARewards</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ApigeeDelta/TheBigZ.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>369330A8BA00E7CFDA52C7307E7751CE3DE90CEB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>369330A8BA00E7CFDA52C7307E7751CE3DE90CEB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TheBigZ-Migration</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BFBFCC10C050BE3C828F84930A08E73A0AD00086</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VTARewards</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VZV-DemoDay</string>
+		</dict>
+	</array>
+</dict>
+</plist>

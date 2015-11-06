@@ -1,0 +1,133 @@
+{
+  "$view": {
+    "attributes": {
+      "_id": "weather",
+      "statusBar.style": "light",
+      "bg.color": "#000000"
+    },
+    "actions": [
+      {
+        "_type": "Function",
+        "attributes": {
+          "_target": "mapControl",
+          "functionName": "showAllPins",
+          "delay": 0
+        },
+        "on": "didAppear"
+      }
+    ],
+    "controls": [
+      {
+        "_id": "layoutMain",
+        "_type": "Layout",
+        "actions": [],
+        "attributes": {
+          "size.w": "100%",
+          "size.h": "100%",
+          "bg.color": "000000",
+          "layoutType": "float"
+        },
+        "controls": [
+          {
+            "_id": "layoutHeader",
+            "_type": "Layout",
+            "attributes": {
+              "size.w": "100%",
+              "size.h": 60,
+              "bg.color": "8e8883",
+              "layoutType": "float"
+            },
+            "controls": [
+              {
+                "_type": "Text",
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "HelveticaNeue-Light:20",
+                  "size.w": "100%",
+                  "layoutType": "absolute",
+                  "margin.top": 23,
+                  "text.align": "center",
+                  "text": "My Offers"
+                }
+              },
+              {
+                "_type": "Text",
+                "_id": "btnMenu",
+                "actions": [
+                  {
+                    "_type": "Function",
+                    "attributes": {
+                      "_target": "$app",
+                      "functionName": "drawer.l.toggle"
+                    },
+                    "enabled": true,
+                    "on": "touchUp"
+                  }
+                ],
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "FontAwesome:22",
+                  "size.w": 50,
+                  "size.h": 50,
+                  "margin.top": 10,
+                  "layoutType": "absolute",
+                  "text.align": "center",
+                  "align.h": "left",
+                  "text": "fa-th-large"
+                }
+              },
+              {
+                "_type": "Text",
+                "_id": "btnSettings",
+                "actions": [
+                  {
+                    "_type": "Navigate",
+                    "attributes": {
+                      "to": "view.json",
+                      "animation.type": "crossDissolve",
+                      "animation.duration": 0,
+                      "stackType": "replace"
+                    },
+                    "enabled": true,
+                    "on": "touchUp"
+                  }
+                ],
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "FontAwesome:22",
+                  "size.w": 50,
+                  "size.h": 50,
+                  "margin.top": 10,
+                  "layoutType": "absolute",
+                  "text.align": "center",
+                  "align.h": "right",
+                  "text": "fa-th-list"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "mapControl",
+            "_type": "Map",
+            "attributes": {
+              "animatePinDrop.enabled": true,
+              "pin": {
+                "lat": "[[$row.location.latitude]]",
+                "long": "[[$row.location.longitude]]",
+                "subtitle": "[[$row.offer_description]]",
+                "title": "[[$row.offerid]]",
+                "pin.leftImage":"[[$row.offer_image]]"
+              },
+              "datasource.id": "dataOffers",
+              "size.h": "100%",
+              "size.w": "100%",
+              "userLocation.enabled": true,
+              "zoomLevel": 5
+            }
+          }
+        ]
+      }
+    ],
+    "datasources": []
+  }
+}

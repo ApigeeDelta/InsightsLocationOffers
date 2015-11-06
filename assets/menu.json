@@ -1,0 +1,328 @@
+{
+  "$view": {
+    "attributes": {
+      "_id": "weather",
+      "statusBar.style": "light",
+      "bg.color": "#fffbf9"
+    },
+    "controls": [
+      {
+        "_id": "layoutMain",
+        "_type": "Layout",
+        "attributes": {
+          "size.w": "100%",
+          "size.h": "100%",
+          "bg.color": "fffbf9",
+          "layoutType": "float"
+        },
+        "controls": [
+          {
+            "_id": "layoutHeader",
+            "_type": "Layout",
+            "attributes": {
+              "size.w": "100%",
+              "size.h": 60,
+              "bg.color": "8e8883",
+              "layoutType": "float"
+            },
+            "controls": [
+              {
+                "_type": "Text",
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "HelveticaNeue-Light:20",
+                  "size.w": "100%",
+                  "layoutType": "absolute",
+                  "margin.top": 23,
+                  "text.align": "center",
+                  "text": "Select User"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "layoutMenu",
+            "_type": "Layout",
+            "attributes": {
+              "size.w": "100%",
+              "size.h": "100%",
+              "padding.top": 80,
+              "padding": 15,
+              "padding.right": 15,
+              "layoutType": "absolute"
+            },
+            "controls": [
+              {
+                "_id": "layoutMenu",
+                "_type": "Layout",
+                "attributes": {
+                  "size.w": "100%",
+                  "size.h": "100%"
+                },
+                "controls": [
+                  {
+                    "_type": "Text",
+                    "attributes": {
+                      "color": "#8e8883",
+                      "font": "HelveticaNeue:20",
+                      "size.w": "100%",
+                      "margin.top": 0,
+                      "text.align": "left",
+                      "text": "User 37341822"
+                    }
+                  },
+                  {
+                    "_id": "layoutMenu",
+                    "_type": "Layout",
+                    "attributes": {
+                      "size.w": "100%"
+                    },
+                    "actions": [
+                      {
+                        "_type": "Modify",
+                        "attributes": {
+                          "_target": "$session"
+                        },
+                        "set": {
+                          "userLat": 37.333916,
+                          "userLng": -121.894076,
+                          "userId": 37341822
+                        },
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Function",
+                        "attributes": {
+                          "_target": "$app",
+                          "functionName": "drawer.l.toggle"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Navigate",
+                        "attributes": {
+                          "to": "view.json",
+                          "delay": 0.25,
+                          "animation.type": "crossDissolve",
+                          "animation.duration": 0,
+                          "stackType": "replace"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      }
+                    ],
+                    "controls": [
+                      {
+                        "_type": "Text",
+                        "attributes": {
+                          "color": "#8e8883",
+                          "font": "HelveticaNeue:12",
+                          "size.w": "100%",
+                          "margin.top": 5,
+                          "margin.bottom": 2,
+                          "text.align": "left",
+                          "text": "84  S Almaden Blvd, San Jose, CA 95113"
+                        }
+                      },
+                      {
+                        "_id": "mapControl",
+                        "_type": "Map",
+                        "attributes": {
+                          "animatePinDrop.enabled": true,
+                          "pin": {
+                            "lat": "37.333916",
+                            "long": "-121.894076",
+                            "subtitle": "Subtitle",
+                            "title": "Title"
+                          },
+                          "size.h": 100,
+                          "size.w": "100%",
+                          "border.size": 1,
+                          "border.color": "8e8883",
+                          "userLocation.enabled": false,
+                          "zoomLevel": 12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_id": "layoutMenu",
+                    "_type": "Layout",
+                    "attributes": {
+                      "size.w": "100%"
+                    },
+                    "actions": [
+                      {
+                        "_type": "Modify",
+                        "attributes": {
+                          "_target": "$session"
+                        },
+                        "set": {
+                          "userLat": 37.3343901,
+                          "userLng": -121.9241317,
+                          "userId": 37341822
+                        },
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Function",
+                        "attributes": {
+                          "_target": "$app",
+                          "functionName": "drawer.l.toggle"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Navigate",
+                        "attributes": {
+                          "to": "view.json",
+                          "delay": 0.25,
+                          "animation.type": "crossDissolve",
+                          "animation.duration": 0,
+                          "stackType": "replace"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      }
+                    ],
+                    "controls": [
+                      {
+                        "_type": "Text",
+                        "attributes": {
+                          "color": "#8e8883",
+                          "font": "HelveticaNeue:12",
+                          "size.w": "100%",
+                          "margin.top": 5,
+                          "margin.bottom": 2,
+                          "text.align": "left",
+                          "text": "10 Park Ave, San Jose, CA 95126"
+                        }
+                      },
+                      {
+                        "_id": "mapControl",
+                        "_type": "Map",
+                        "actions": [
+                          {
+                            "_type": "Alert",
+                            "attributes": {
+                              "title": "You touched on [[$self.pin.title]]."
+                            },
+                            "on": "touchUp"
+                          }
+                        ],
+                        "attributes": {
+                          "animatePinDrop.enabled": true,
+                          "pin": {
+                            "lat": "37.3343901",
+                            "long": "-121.9241317",
+                            "subtitle": "Subtitle",
+                            "title": "Title"
+                          },
+                          "size.h": 100,
+                          "size.w": "100%",
+                          "border.size": 1,
+                          "border.color": "8e8883",
+                          "userLocation.enabled": false,
+                          "zoomLevel": 12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "_type": "Text",
+                    "attributes": {
+                      "color": "#8e8883",
+                      "font": "HelveticaNeue:20",
+                      "size.w": "100%",
+                      "margin.top": 15,
+                      "text.align": "left",
+                      "text": "User 63686682"
+                    }
+                  },
+                  {
+                    "_id": "layoutMenu",
+                    "_type": "Layout",
+                    "attributes": {
+                      "size.w": "100%"
+                    },
+                    "actions": [
+                      {
+                        "_type": "Modify",
+                        "attributes": {
+                          "_target": "$session"
+                        },
+                        "set": {
+                          "userLat": 37.333916,
+                          "userLng": -121.894076,
+                          "userId": 63686682
+                        },
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Function",
+                        "attributes": {
+                          "_target": "$app",
+                          "functionName": "drawer.l.toggle"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      },
+                      {
+                        "_type": "Navigate",
+                        "attributes": {
+                          "to": "view.json",
+                          "delay": 0.25,
+                          "animation.type": "crossDissolve",
+                          "animation.duration": 0,
+                          "stackType": "replace"
+                        },
+                        "enabled": true,
+                        "on": "touchUp"
+                      }
+                    ],
+                    "controls": [
+                      {
+                        "_type": "Text",
+                        "attributes": {
+                          "color": "#8e8883",
+                          "font": "HelveticaNeue:12",
+                          "size.w": "100%",
+                          "margin.top": 5,
+                          "margin.bottom": 2,
+                          "text.align": "left",
+                          "text": "84 S Almaden Blvd, San Jose, CA 95113"
+                        }
+                      },
+                      {
+                        "_id": "mapControl",
+                        "_type": "Map",
+                        "attributes": {
+                          "animatePinDrop.enabled": true,
+                          "pin": {
+                            "lat": "37.333916",
+                            "long": "-121.894076",
+                            "subtitle": "Subtitle",
+                            "title": "Title"
+                          },
+                          "size.h": 100,
+                          "size.w": "100%",
+                          "border.size": 1,
+                          "border.color": "8e8883",
+                          "userLocation.enabled": false,
+                          "zoomLevel": 12
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "datasources": []
+  }
+}

@@ -1,0 +1,1 @@
+../../../IgniteEngine/IgniteEngine/Utilities/IXAssetManager.h

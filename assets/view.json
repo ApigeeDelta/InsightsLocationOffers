@@ -1,0 +1,311 @@
+{
+  "$view": {
+    "attributes": {
+      "_id": "weather",
+      "statusBar.style": "light",
+      "bg.color": "#000000"
+    },
+    "actions": [
+      {
+        "_type": "Modify",
+        "attributes": {
+          "_target": "layoutLoading"
+        },
+        "set": {
+          "visible": true
+        },
+        "enabled": true,
+        "on": "willAppear"
+      },
+      {
+        "_type": "Function",
+        "attributes": {
+          "_target": "$app",
+          "functionName": "location.auth.request"
+        },
+        "on": "willAppear"
+      },
+      {
+        "_type": "Refresh",
+        "attributes": {
+          "_target": "dataOffers"
+        },
+        "on": "didAppear"
+      }
+    ],
+    "controls": [
+      {
+        "_id": "layoutMain",
+        "_type": "Layout",
+        "actions": [],
+        "attributes": {
+          "size.w": "100%",
+          "size.h": "100%",
+          "bg.color": "000000",
+          "layoutType": "float"
+        },
+        "controls": [
+          {
+            "_id": "layoutHeader",
+            "_type": "Layout",
+            "attributes": {
+              "size.w": "100%",
+              "size.h": 60,
+              "bg.color": "8e8883",
+              "layoutType": "float"
+            },
+            "controls": [
+              {
+                "_type": "Text",
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "HelveticaNeue-Light:20",
+                  "size.w": "100%",
+                  "layoutType": "absolute",
+                  "margin.top": 23,
+                  "text.align": "center",
+                  "text": "My Offers"
+                }
+              },
+              {
+                "_type": "Text",
+                "_id": "btnMenu",
+                "actions": [
+                  {
+                    "_type": "Function",
+                    "attributes": {
+                      "_target": "$app",
+                      "functionName": "drawer.l.toggle"
+                    },
+                    "enabled": true,
+                    "on": "touchUp"
+                  }
+                ],
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "FontAwesome:22",
+                  "size.w": 50,
+                  "size.h": 50,
+                  "margin.top": 10,
+                  "layoutType": "absolute",
+                  "text.align": "center",
+                  "align.h": "left",
+                  "text": "fa-th-large"
+                }
+              },
+              {
+                "_type": "Text",
+                "_id": "btnSettings",
+                "actions": [
+                  {
+                    "_type": "Navigate",
+                    "attributes": {
+                      "to": "map.json",
+                      "animation.type": "crossDissolve",
+                      "animation.duration": 0,
+                      "stackType": "replace"
+                    },
+                    "enabled": true,
+                    "on": "touchUp"
+                  }
+                ],
+                "attributes": {
+                  "color": "#ffffff",
+                  "font": "FontAwesome:22",
+                  "size.w": 50,
+                  "size.h": 50,
+                  "margin.top": 10,
+                  "layoutType": "absolute",
+                  "text.align": "center",
+                  "align.h": "right",
+                  "text": "fa-map-marker"
+                }
+              }
+            ]
+          },
+          {
+            "_id": "tableSettings",
+            "_type": "TableView",
+            "actions": [
+              {
+                "_type": "Function",
+                "attributes": {
+                  "_target": "layoutMain",
+                  "functionName": "takeSnapshot"
+                },
+                "set": {
+                  "saveToLocation": "cache://blurOverlay.png"
+                },
+                "on": "didEndScrolling"
+              }
+            ],
+            "attributes": {
+              "bg.color": "fffbf9",
+              "datasource.id": "dataOffers",
+              "data.basepath": "offers",
+              "enabled": true,
+              "size.w": "100%",
+              "autofill.h": true,
+              "cell.size.w": "100%",
+              "margin.top": 60,
+              "separator.style": "default",
+              "size.h": "100%"
+            },
+            "controls": [
+              {
+                "_type": "Layout",
+                "actions": [
+                  {
+                    "_type": "Alert",
+                    "attributes": {
+                      "title": "You touched: [[dataRow.name]] ([[dataRow.abbreviation]])"
+                    },
+                    "enabled": false,
+                    "on": "touchUp"
+                  },
+                  {
+                    "_type": "1Navigate",
+                    "attributes": {
+                      "nav_animation_duration": 0,
+                      "nav_animation_type": "cross_dissolve",
+                      "nav_stack_type": "push",
+                      "to": "Social.json"
+                    },
+                    "enabled": true,
+                    "on": "touchUp"
+                  }
+                ],
+                "attributes": {
+                  "size.w": "100%",
+                  "bg.color": "fffbf9",
+                  "layoutType": "absolute"
+                },
+                "controls": [
+                  {
+                    "_type": "Text",
+                    "attributes": {
+                      "color": "#535353",
+                      "font": "HelveticaNeue-Light:16",
+                      "size.w": "100%",
+                      "text.align": "center",
+                      "margin.top": 10,
+                      "padding.left": 15,
+                      "text": "Special Offer:"
+                    }
+                  },
+                  {
+                    "_type": "Text",
+                    "attributes": {
+                      "color": "#535353",
+                      "font": "HelveticaNeue-Light:24",
+                      "size.w": "100%",
+                      "text.align": "center",
+                      "margin.top": 0,
+                      "padding.left": 15,
+                      "padding.bottom": 0,
+                      "text": "[[$row.offer_description]]"
+                    }
+                  },
+                  {
+                    "_type": "Layout",
+                    "attributes": {
+                      "bg.color": "fffbf9",
+                      "align.h": "center",
+                      "layoutType": "absolute",
+                      "layoutFlow": "horizontal",
+                      "margin.top": 60
+                    },
+                    "controls": [
+                      {
+                        "_type": "Image",
+                        "attributes": {
+                          "margin": 15,
+                          "margin.bottom": 0,
+                          "max.h": 50,
+                          "bg.color": "fffbf9",
+                          "image": "[[$row.offer_image]]"
+                        }
+                      },
+                      {
+                        "_type": "Layout",
+                        "attributes": {
+                          "align.h": "left",
+                          "1margin.left": 125,
+                          "padding.bottom": 15,
+                          "1layoutType": "absolute",
+                          "bg.color": "fffbf9"
+                        },
+                        "controls": [
+                          {
+                            "_type": "Text",
+                            "attributes": {
+                              "color": "#8e8883",
+                              "font": "HelveticaNeue-Light:14",
+                              "margin.top": 15,
+                              "padding.right": 15,
+                              "text.align": "right",
+                              "text": "[[$row.address.street]]"
+                            }
+                          },
+                          {
+                            "_type": "Text",
+                            "attributes": {
+                              "color": "#8e8883",
+                              "padding.right": 15,
+                              "text.align": "right",
+                              "font": "HelveticaNeue-Light:14",
+                              "text": "[[$row.address.city]], [[$row.address.state]] [[$row.address.zipcode]]"
+                            }
+                          },
+                          {
+                            "_type": "Text",
+                            "attributes": {
+                              "color": "#8e8883",
+                              "font": "HelveticaNeue-Light:10",
+                              "margin.top": 5,
+                              "padding.right": 15,
+                              "text.align": "right",
+                              "text": "Distance: [[$app:distance([[$session.userLat]]:[[$session.userLng]],[[$row.location.latitude]]:[[$row.location.longitude]])]]"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "Layout",
+        "_id": "layoutLoading",
+        "attributes": {
+          "visible": false,
+          "bg.color": "00000050",
+          "align.h": "center",
+          "size.h": "100%",
+          "size.w": "100%",
+          "layoutType": "float",
+          "layoutFlow": "horizontal",
+          "margin.top": 0
+        },
+        "controls": [
+          {
+            "_id": "myActivityIndicator",
+            "_type": "ActivityIndicator",
+            "attributes": {
+              "align.h": "center",
+              "align.v": "middle",
+              "color": "#ffffff",
+              "layoutType": "float",
+              "size": "large"
+            }
+          }
+        ]
+      }
+    ],
+    "datasources": []
+  }
+}

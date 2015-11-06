@@ -1,0 +1,92 @@
+{
+  "offers": [
+    {
+      "uuid": "0f51a20a-ff67-11e4-9c59-bd499e931ccf",
+      "type": "offer",
+      "created": 1432177883168,
+      "modified": 1432177883168,
+      "address": {
+        "street": "198 W Santa Clara St",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": 95113
+      },
+      "location": {
+        "latitude": 37.33461,
+        "longitude": -121.893637
+      },
+      "metadata": {
+        "path": "/offers/0f51a20a-ff67-11e4-9c59-bd499e931ccf"
+      },
+      "offer_description": "Kids eat free",
+      "offer_image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQPF-NgZMCcMOmy0Y1VviIXv7SaFTqg_J7lQ5HFQUL-sp6oQ37Hhw",
+      "offerid": "Dennys"
+    },
+    {
+      "uuid": "0f51a20a-ff67-11e4-9c59-bd499e931ccf",
+      "type": "offer",
+      "created": 1432177883168,
+      "modified": 1432177883168,
+      "address": {
+        "street": "198 W Santa Clara St",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": 95113
+      },
+      "location": {
+        "latitude": 37.33461,
+        "longitude": -121.893637
+      },
+      "metadata": {
+        "path": "/offers/0f51a20a-ff67-11e4-9c59-bd499e931ccf"
+      },
+      "offer_description": "Kids eat free Kids eat free Kids eat free Kids eat free Kids eat free",
+      "offer_image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQPF-NgZMCcMOmy0Y1VviIXv7SaFTqg_J7lQ5HFQUL-sp6oQ37Hhw",
+      "offerid": "Dennys"
+    },
+    {
+      "uuid": "0f560eda-ff67-11e4-8360-49266b2f0952",
+      "type": "offer",
+      "created": 1432177883197,
+      "modified": 1432177883197,
+      "address": {
+        "street": "223 W Santa Clara St",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": 95113
+      },
+      "location": {
+        "latitude": 37.334246,
+        "longitude": -121.89482
+      },
+      "metadata": {
+        "path": "/offers/0f560eda-ff67-11e4-8360-49266b2f0952"
+      },
+      "offer_description": "Free coffee with purchase of pastry",
+      "offer_image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcShUo5QiY-k_1tAPC5eWjIlQ0LsQ3m0MN91R1GY87TSJjBtllW42w",
+      "offerid": "DunkinDonuts"
+    },
+    {
+      "uuid": "0f560eda-ff67-11e4-8360-49266b2f0952",
+      "type": "offer",
+      "created": 1432177883197,
+      "modified": 1432177883197,
+      "address": {
+        "street": "223 W Santa Clara St",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": 95113
+      },
+      "location": {
+        "latitude": 37.334246,
+        "longitude": -121.89482
+      },
+      "metadata": {
+        "path": "/offers/0f560eda-ff67-11e4-8360-49266b2f0952"
+      },
+      "offer_description": "Free coffee with purchase of pastry",
+      "offer_image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcShUo5QiY-k_1tAPC5eWjIlQ0LsQ3m0MN91R1GY87TSJjBtllW42w",
+      "offerid": "DunkinDonuts"
+    }
+  ]
+}

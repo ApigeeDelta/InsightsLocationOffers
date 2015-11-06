@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AC6FEB2AEE8FE8A6EEA0DFB6F09DED696AC47B14",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AC6FEB2AEE8FE8A6EEA0DFB6F09DED696AC47B14" : 0,
+    "BFBFCC10C050BE3C828F84930A08E73A0AD00086" : 0,
+    "6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30" : 0,
+    "369330A8BA00E7CFDA52C7307E7751CE3DE90CEB" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "42478144-0248-4E41-A2DD-9B53CDA267E5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AC6FEB2AEE8FE8A6EEA0DFB6F09DED696AC47B14" : "InsightsLocationOffers\/",
+    "BFBFCC10C050BE3C828F84930A08E73A0AD00086" : "VTARewards",
+    "6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30" : "VZV-DemoDay",
+    "369330A8BA00E7CFDA52C7307E7751CE3DE90CEB" : "TheBigZ-Migration\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IgniteEngineApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "IgniteEngineApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ApigeeDelta\/TheBigZ.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "369330A8BA00E7CFDA52C7307E7751CE3DE90CEB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ApigeeDelta\/VZV-DemoDay.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6B2B91EB1CA23D04D0C39D8FE6E72787098B0E30"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ApigeeDelta\/InsightsLocationOffers.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AC6FEB2AEE8FE8A6EEA0DFB6F09DED696AC47B14"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ApigeeDelta\/VTARewards.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BFBFCC10C050BE3C828F84930A08E73A0AD00086"
+    }
+  ]
+}

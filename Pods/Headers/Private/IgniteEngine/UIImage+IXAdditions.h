@@ -1,0 +1,1 @@
+../../../IgniteEngine/IgniteEngine/Categories/UIImage+IXAdditions.h

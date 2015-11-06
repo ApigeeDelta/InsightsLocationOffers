@@ -1,0 +1,1 @@
+../../../IgniteEngine/IgniteEngine/Controls/IXCamera.h

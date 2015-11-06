@@ -1,0 +1,52 @@
+{
+  "$app": {
+    "actions": [],
+    "attributes": {
+      "defaultView": "view.json",
+      "debug.layout.enabled": false,
+      "logging.datasource.enabled": false,
+      "logging.level": "verbose",
+      "mode": "release",
+      "navigationBar.enabled": false,
+      "drawer.l.url": "menu.json",
+      "drawer.velocity": 1000,
+      "drawer.l.max.w": 264
+    },
+    "datasources": [
+      {
+        "_id": "dataOffers",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "title": "dataOffers",
+              "message": "[[$self.response.string]]"
+            },
+            "enabled": false,
+            "on": "success,error"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "layoutLoading"
+            },
+            "set": {
+              "visible": false
+            },
+            "enabled": true,
+            "on": "done"
+          }
+        ],
+        "attributes": {
+          "data.basepath": "offers",
+          "autoLoad.enabled": false,
+          "method": "GET",
+          "responseType": "json",
+          "url": "http://apigee-6077-test.apigee.net/aimia/recommendations?latitude=[[$session.userLat]]&longitude=[[$session.userLng]]&userid=[[$session.userId]]",
+          "1url": "/data/data.json"
+        }
+      }
+    ]
+  }
+}

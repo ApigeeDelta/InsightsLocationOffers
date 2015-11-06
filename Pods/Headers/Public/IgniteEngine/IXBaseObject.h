@@ -1,0 +1,1 @@
+../../../IgniteEngine/IgniteEngine/Core/IXBaseObject.h

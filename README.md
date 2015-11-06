@@ -1,2 +1,1 @@
-# InsightsLocationOffers
-InsightsLocationOffers
+# VZV-DemoDay

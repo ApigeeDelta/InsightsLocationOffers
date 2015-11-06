@@ -1,0 +1,1661 @@
+{
+  "$app": {
+    "actions": [],
+    "attributes": {
+      "statusBar.style": "light",
+      "defaultView": "viewSelectEnvironment.json",
+      "apigee.org": "thebigz",
+      "apigee.app": "mobileapp",
+      "apigee.baseUrl": "https://amer-apibaas-prod.apigee.net/appservices/",
+      "apigee.notifier": "apple-prod",
+      "debug.layout.enabled": false,
+      "drawer.l.max.w": 264,
+      "drawer.l.url": "viewDrawerMenu.json",
+      "drawer.toggleVelocity": 1000,
+      "logging.datasource.enabled": true,
+      "logging.level": "error",
+      "mode": "release",
+      "navigationBar.enabled": false,
+      "preloadImages.enabled": [
+        "assets/images/natura_cart_step1.png",
+        "assets/images/natura_cart_step2.png",
+        "assets/images/natura_cart_step3.png",
+        "assets/images/icon_back_50x50.png",
+        "assets/images/btn_burger_50x50.png",
+        "assets/images/cat_11_70x50.png",
+        "assets/images/cat_12_70x50.png",
+        "assets/images/cat_13_70x50.png",
+        "assets/images/cat_14_70x50.png",
+        "assets/images/menu_history_25x25.png",
+        "assets/images/menu_offers_25x25.png",
+        "assets/images/menu_products_25x25.png",
+        "assets/images/menu_profile_25x25.png",
+        "assets/images/menu_signout_25x25.png",
+        "assets/images/star_00_77x14.png",
+        "assets/images/star_05_77x14.png",
+        "assets/images/star_10_77x14.png",
+        "assets/images/star_15_77x14.png",
+        "assets/images/star_20_77x14.png",
+        "assets/images/star_25_77x14.png",
+        "assets/images/star_30_77x14.png",
+        "assets/images/star_35_77x14.png",
+        "assets/images/star_40_77x14.png",
+        "assets/images/star_45_77x14.png",
+        "assets/images/star_50_77x14.png",
+        "assets/images/btn_quickcart_34x30.png",
+        "assets/images/star_4_77x14.png",
+        "assets/images/btn_pay_160x36.png",
+        "assets/images/dot_1_50x50.png",
+        "assets/images/dot_0_50x50.png",
+        "assets/images/btn_signin_130x36.png",
+        "assets/images/btn_reset_130x36.png",
+        "assets/images/divider_Xx1.png",
+        "assets/images/btn_close_50x50.png",
+        "assets/images/_demo_bo12.png",
+        "assets/images/icon_home_20x50.png",
+        "assets/images/icon_location_20x50_off.png",
+        "assets/images/icon_location_20x50_on.png",
+        "assets/images/icon_locations_20x50.png",
+        "assets/images/icon_back_20x50.png",
+        "assets/images/icon_cart_20x50.png",
+        "assets/images/icon_signin_20x50.png",
+        "assets/images/icon_close_20x50.png",
+        "assets/images/btn_review_22x22.png",
+        "assets/images/btn_addtocart_130x36.png",
+        "assets/images/icon_search_70x50.png",
+        "assets/images/cat_0_70x50.png",
+        "assets/images/cat_1_70x50.png",
+        "assets/images/cat_2_70x50.png",
+        "assets/images/cat_3_70x50.png",
+        "assets/images/cat_4_70x50.png",
+        "assets/images/cat_5_70x50.png",
+        "assets/images/cat_6_70x50.png",
+        "assets/images/cat_7_70x50.png",
+        "assets/images/cat_8_70x50.png",
+        "assets/images/cat_10_70x50.png",
+        "assets/images/cat_9_70x50.png",
+        "assets/images/bg_320x568.png",
+        "assets/images/pin_32x60_red@2x.png",
+        "assets/images/pin_32x60_blue@2x.png"
+      ]
+    },
+    "datasources": [
+      {
+        "_id": "dataAuthenticate",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "cart_count": "",
+              "environment": [
+                "if :: [[$session.environment:length]] > 0 :: [[$session.environment:length]]",
+                "if :: [[$session.environment:length]] < 1 :: 0"
+              ],
+              "order_id": "",
+              "ordered": "",
+              "user_addr1": "[[dataAuthenticate.response.body.user.adr.addr1]]",
+              "user_addr2": "[[dataAuthenticate.response.body.user.adr.addr2]]",
+              "user_city": "[[dataAuthenticate.response.body.user.adr.city]]",
+              "user_country": "[[dataAuthenticate.response.body.user.adr.country]]",
+              "user_default_payment": "[[dataAuthenticate.response.body.user.options.default_payment]]",
+              "user_default_shipping": "[[dataAuthenticate.response.body.user.options.default_shipping]]",
+              "user_email": "[[dataAuthenticate.response.body.user.email]]",
+              "user_name": "[[dataAuthenticate.response.body.user.name]]",
+              "user_state": "[[dataAuthenticate.response.body.user.adr.state]]",
+              "user_uuid": "[[dataAuthenticate.response.body.user.uuid]]",
+              "user_zip": "[[dataAuthenticate.response.body.user.adr.zip]]"
+            }
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "access_token": "[[$self.response.body.access_token]]"
+            }
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataProducts,dataCategories,dataHome,dataCreateNewCart,dataFavorites"
+            },
+            "enabled": true,
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]authenticate?apikey=[[$session.apigee_edge_apikey]]",
+          "1url": "http://requestb.in/odnb1aod",
+          "data.basepath": "entities",
+          "method": "POST",
+          "body": {
+            "grant_type": "password",
+            "username": "[[$session.user_username]]",
+            "password": "[[$session.user_password]]"
+          }
+        }
+      },
+      {
+        "_id": "dataAuth",
+        "_type": "OAuth2",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "message": "Please check your username and password and try again.",
+              "title": "Whoops!"
+            },
+            "enabled": false,
+            "on": "auth.error"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "layoutCartSummary",
+              "duration": 0
+            },
+            "enabled": true,
+            "on": "auth.success",
+            "set": {
+              "margin.bottom": 50
+            }
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "layoutCartFooter",
+              "duration": 1
+            },
+            "enabled": true,
+            "on": "auth.success",
+            "set": {
+              "visible": false
+            }
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "layoutCartFooterConfirm"
+            },
+            "enabled": true,
+            "on": "auth.success",
+            "set": {
+              "visible": true
+            }
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataUser"
+            },
+            "enabled": true,
+            "on": "auth.success"
+          }
+        ],
+        "attributes": {
+          "auth_type": "oauth2",
+          "autoLoad.enabled": false,
+          "url": "https://apigee-delta-test.apigee.net",
+          "http.headers.accept": "application/json",
+          "oauth": {
+            "access_token_path": "/v1/oauth/token",
+            "authorize_path": "/v1/oauth/samplelogingpage",
+            "client_id": "xvvWzc4qnOvcVpwImCk9eiPckzWx5jSS",
+            "client_logo": "https://ignite.apigee.com/demo/logoAnytel_300x75.png",
+            "client_name": "Anytel",
+            "color_0": "008981",
+            "color_1": "007b74",
+            "field_0": "Phone%20Number",
+            "field_1": "PIN",
+            "grant_type": "implicit",
+            "redirect_uri": "http://localhost",
+            "response_type": "token",
+            "scope": "READ",
+            "storage_id": "token_time"
+          }
+        }
+      },
+      {
+        "_id": "dataUser",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[dataUser.body.string]]",
+              "title": "dataUser"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "1Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "user_addr1": "[[$self.response.body.entities.0.adr.addr1]]",
+              "user_addr2": "[[$self.response.body.entities.0.adr.addr2]]",
+              "user_city": "[[$self.response.body.entities.0.adr.city]]",
+              "user_default_payment": "[[$self.response.body.entities.0.options.default_payment]]",
+              "user_default_shipping": "[[$self.response.body.entities.0.options.default_shipping]]",
+              "user_name": "[[$self.response.body.entities.0.name]]",
+              "user_state": "[[$self.response.body.entities.0.adr.state]]",
+              "user_zip": "[[$self.response.body.entities.0.adr.zip]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[$session.user_default_payment]]",
+              "title": "dataUser"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "layoutPaymentInfo"
+            },
+            "enabled": true,
+            "on": "success",
+            "set": {
+              "visible": true
+            }
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "https://apigee-delta-test.apigee.net",
+          "data.basepath": "entities",
+          "method": "GET",
+          "pathSuffix": "/v1/anytel-users/[[$session.find_user]]"
+        }
+      },
+      {
+        "_id": "dataOptions",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "1Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "apigee_edge_apikey": "[[dataOptions.response.body.entities.0.api.key]]",
+              "apigee_edge_url": "[[dataOptions.response.body.entities.0.api.url]]",
+              "apigee_edge_version": "[[dataOptions.response.body.entities.0.api.version]]",
+              "cart_count": "",
+              "environment": [
+                "if :: [[$session.environment:length]] > 0 :: [[$session.environment:length]]",
+                "if :: [[$session.environment:length]] < 1 :: 0"
+              ],
+              "order_id": "",
+              "ordered": "",
+              "user_uuid": "[[dataOptions.response.body.entities.0.api.user_uuid]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "raw: [[dataOptions.response.string]]",
+              "title": "dataOptions"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "envSpinner"
+            },
+            "set": {
+              "visible": false
+            },
+            "on": "success,error"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "https://api.usergrid.com/apigee-ignite/retail-demo/environments",
+          "method": "GET"
+        },
+        "parameters": {
+          "ql": "where device = 'both' order by created asc"
+        }
+      },
+      {
+        "_id": "dataCreateNewCart",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "cart_uuid": "[[$self.response.body.entities.0.uuid]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[$session.cart_uuid]]",
+              "title": "cart_uuid"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Load",
+            "attributes": {
+              "_target": "dataCart"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "success cart uuid: [[$session.cart_uuid]]\nowner: [[$session.user_uuid]]\nBearer [[$session.access_token]]",
+              "title": "dataCreateCart: [[dataCreateNewCart.status_code]], [[dataCreateNewCart.body.string]]"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": true,
+              "message": "failed cart uuid: [[$session.cart_uuid]]\nowner: [[$session.user_uuid]]\nBearer [[$session.access_token]]",
+              "title": "dataCreateCart: [[dataCreateNewCart.status_code]], [[dataCreateNewCart.body.string]]"
+            },
+            "on": "failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts?owner=[[$session.user_uuid]]&apikey=[[$session.apigee_edge_apikey]]",
+          "1url": "http://requestb.in/odnb1aod?owner=[[$session.user_uuid]]&apikey=[[$session.apigee_edge_apikey]]",
+          "method": "POST",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]",
+            "Content-Type": ""
+          },
+          "body": {
+            "owner": "[[$session.user_uuid]]"
+          }
+        }
+      },
+      {
+        "_id": "dataConnectCart",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[dataConnectCart.body.string]]",
+              "title": "dataConnectCart"
+            },
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[app.apigee.appservices.url]]",
+          "method": "POST",
+          "pathSuffix": "/[[app.apigee_org_id]]/[[app.apigee_app_id]]/users/[[$session.user_uuid]]/carts/[[$session.cart_uuid]]"
+        },
+        "parameters": {
+          "owner": "[[$session.user_uuid]]"
+        }
+      },
+      {
+        "_id": "dataConnectDeviceToUser",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Load",
+            "attributes": {
+              "_target": "app`"
+            },
+            "on": "success",
+            "set": {
+              "apigeeDeviceUuid": "[[$self.device_uuid]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/devices/[[app.apigee.device.uuid]]/users/[[$session.user_uuid]]?apikey=[[$session.apigee_edge_apikey]]",
+              "title": "dataConnectDeviceToUser: [[dataConnectDeviceToUser.status_code]]"
+            },
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]",
+          "method": "POST",
+          "parseParameters.enabled": true,
+          "pathSuffix": "/[[$session.apigee_edge_version]]/users/registerdevice/users/[[$session.user_uuid]]?apikey=[[$session.apigee_edge_apikey]]"
+        },
+        "parameters": {
+          "apple.notifier.id": "2c1d44ef82b9aaa3ec900d4d3f29c4259a587959f3dbf5689cd0bd2bef18a5f8"
+        }
+      },
+      {
+        "_id": "dataCartAvailability",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Log",
+            "attributes": {
+              "text": "dataCart: [[$session.cart_uuid]] // [[$self.body.string]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "1Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "cart_count": "[[$self.count_rows]]",
+              "cart_total": "[[$self.dataRow.total.price]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": true,
+              "message": "",
+              "title": "dataCartAvailability ([[dataCartAvailability.count_rows]])"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "1Refresh",
+            "attributes": {
+              "_target": "layoutCartContainer,buttonCartCount"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "1Event",
+            "attributes": {
+              "_target": "alert",
+              "delay": 4,
+              "eventName": "hide"
+            },
+            "on": "touchUp"
+          }
+        ],
+        "attributes": {
+          "1data.baseurl": "[[$session.apigee_edge_url]]",
+          "1data.path": "/[[$session.apigee_edge_version]]/carts/[[$session.cart_uuid]]/products?apikey=[[$session.apigee_edge_apikey]]",
+          "autoLoad.enabled": false,
+          "url": "/data",
+          "cache.id": "1cart",
+          "data.basepath": "items",
+          "method": "GET",
+          "pathSuffix": "/checkavailability.json"
+        },
+        "parameters": {}
+      },
+      {
+        "_id": "dataCart",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Log",
+            "attributes": {
+              "text": "dataCart: [[$session.cart_uuid]] // [[$self.body.string]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "cart_count": "[[$self.entities.$count]]",
+              "cart_total": "[[$self.dataRow.total.price]]"
+            }
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[dataCart.body.string]]",
+              "title": "dataCart ([[dataCart.entities.$count]]//[[$session.cart_count]])"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "layoutCartContainer,buttonCartCount"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Event",
+            "attributes": {
+              "_target": "alert",
+              "delay": 4,
+              "eventName": "hide"
+            },
+            "on": "touchUp"
+          }
+        ],
+        "attributes": {
+          "1cache_id": "cart",
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts/[[$session.cart_uuid]]/products?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "GET",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "dataCartAddItem",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Log",
+            "attributes": {
+              "text": "dataCartAddItem: [[$session.cart_uuid]] // [[$session.product_uuid]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataCart",
+              "delay": 0
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts/[[$session.cart_uuid]]/products/[[$session.product_uuid]]?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "POST",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "dataCartDeleteItem",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Log",
+            "attributes": {
+              "text": "dataCartDeleteItem: [[$session.cart_uuid]] // [[$self.body.string]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Load",
+            "attributes": {
+              "_target": "dataCart",
+              "delay": 0
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "layoutCartContainer"
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "1cache_id": "cart",
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts/[[$session.cart_uuid]]/products/[[$session.product_uuid_delete]]?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "DELETE",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "dataAssociateDevice",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Log",
+            "attributes": {
+              "text": "dataCartAddItem: [[$session.cart_uuid]] // [[$self.body.string]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Refresh",
+            "actions": [],
+            "attributes": {
+              "_target": "dataCart"
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "1data.baseurl": "[[$session.apigee_edge_url]]",
+          "1data.path": "/[[$session.apigee_edge_version]]/carts/[[$session.cart_uuid]]/products/products/[[$session.product_uuid]]?apikey=[[$session.apigee_edge_apikey]]",
+          "autoLoad.enabled": false,
+          "url": "[[app.apigee.appservices.url]]",
+          "data.basepath": "entities",
+          "method": "POST",
+          "pathSuffix": "[[app.apigee.appservices.url]]/[[app.apigee_org_id]]/[[app.apigee_app_id]]/devices/[[app.apigee.device.uuid]]/users/[[$session.user_uuid]]"
+        },
+        "parameters": {}
+      },
+      {
+        "_id": "dataDeleteCart",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[dataDeleteCart.body.string]]",
+              "title": "dataDeleteCart"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "cart_uuid": "[[$self.response.body.entities.0.uuid]]"
+            }
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataCreateNewCart",
+              "enabled": false
+            },
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts/[[$session.cart_uuid]]?apikey=[[$session.apigee_edge_apikey]]&owner=[[$session.user_uuid]]",
+          "method": "DELETE",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "dataDeleteCartCloseApp",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[$session.cart_uuid]]",
+              "title": "dataCreateCart"
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]",
+          "method": "DELETE",
+          "pathSuffix": "/[[$session.apigee_edge_version]]/[[$session.environment_code]]carts/[[$session.cart_uuid]]?apikey=[[$session.apigee_edge_apikey]]"
+        },
+        "headers": {
+          "Authorization": "Bearer [[$session.access_token]]"
+        },
+        "parameters": {
+          "owner": "[[$session.user_uuid]]"
+        }
+      },
+      {
+        "_id": "dataCategories",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "log_text": "[[$session.log_text]]\n\n[[$self.body.string]]"
+            }
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]categories?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "GET",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        },
+        "parameters": {
+          "limit": 20,
+          "ql": "order by name asc"
+        }
+      },
+      {
+        "_id": "dataProducts",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "title": "Category: [[$session.category_id]]\n\nRow Count: [[$self.count]]"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "log_text": "[[$session.log_text]]\n\n[[$self.body.string]]"
+            }
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]products?apikey=[[$session.apigee_edge_apikey]]",
+          "cache.id": "products",
+          "data.basepath": "entities",
+          "method": "GET",
+          "sort.key": "productName",
+          "sort.order": "ascending",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        },
+        "parameters": {
+          "limit": 40
+        }
+      },
+      {
+        "_id": "dataProductsCache",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "title": "Category: [[$self.response.body.entities.0.productName]]"
+            },
+            "on": "success,failed"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "log_text": "[[$session.log_text]]\n\n[[$self.body.string]]"
+            }
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]products?apikey=[[$session.apigee_edge_apikey]]",
+          "cache.id": "products",
+          "method": "GET",
+          "1predicate.arguments": "'[[$session.category_id]]'",
+          "1predicate.format": "category == [[$session.category_id]]",
+          "1sort.key": "productName",
+          "1sort.order": "ascending",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          },
+          "queryParams": {
+            "limit": 100,
+            "ql": "select * where category = [[$session.category_id]]"
+          }
+        }
+      },
+      {
+        "_id": "dataMenu",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "messade": "Category: [[$session.category_id]]\n\nRow Count: [[$self.count]]",
+              "title": "admin_orders.json success"
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "1predicate.arguments": "visible",
+          "1predicate.format": "visible CONTAINS[c] true",
+          "autoLoad.enabled": true,
+          "url": "/data/menu.json",
+          "cache.id": "menu",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "dataPostOrder",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "title": "POST Success: [[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": true,
+              "title": "POST failed: 123[[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "error"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "order_id": "{{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}",
+              "ordered": true
+            }
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "done",
+            "set": {
+              "alert_icon": "/images/icon_cart_20x50.png",
+              "alert_title": "Order submitted successfully!"
+            }
+          },
+          {
+            "_type": "Event",
+            "attributes": {
+              "_target": "imageButtonClose",
+              "delay": 0,
+              "eventName": "touchUp"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataDeleteCart"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Navigate",
+            "actions": [
+              {
+                "_type": "Create",
+                "actions": [],
+                "attributes": {
+                  "control.url": "/controls/bannerAlert.json",
+                  "delay": 0,
+                  "enabled": true,
+                  "parent.id": "layoutMain"
+                },
+                "on": "done"
+              },
+              {
+                "_type": "Event",
+                "attributes": {
+                  "_target": "alert",
+                  "delay": 0,
+                  "eventName": "show"
+                },
+                "on": "done"
+              },
+              {
+                "_type": "Event",
+                "attributes": {
+                  "_target": "alert",
+                  "delay": 2,
+                  "eventName": "hide"
+                },
+                "on": "done"
+              }
+            ],
+            "attributes": {
+              "animation.duration": 0,
+              "animation.type": "crossDissolve",
+              "stackType": "replace",
+              "to": "viewCategories.json"
+            },
+            "on": "done"
+          }
+        ],
+        "attributes": {
+          "1data.baseurl": "http://requestb.in",
+          "1data.path": "/u8fxhhu8",
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]",
+          "method": "POST",
+          "parseParameters.enabled": true,
+          "pathSuffix": "/[[$session.apigee_edge_version]]/[[$session.environment_code]]orders?apikey=[[$session.apigee_edge_apikey]]"
+        },
+        "headers": {
+          "Authorization": "Bearer [[$session.access_token]]"
+        },
+        "parameters": {
+          "adr": {
+            "addr1": "[[$session.user_addr1]]",
+            "addr2": "[[$session.user_addr2]]",
+            "city": "[[$session.user_city]]",
+            "state": "[[$session.user_state]]",
+            "zip": "[[$session.user_zip]]"
+          },
+          "applyTaxes": "true",
+          "currency": "USD",
+          "customer_email": "[[$session.user_email]]",
+          "customer_id": "[[$session.user_uuid]]",
+          "customer_name": "[[$session.user_name]]",
+          "isCompletedWithCancellations": "false",
+          "items": "[[dataCart.dataRow.body.string]]",
+          "order_id": "[[app.now]]",
+          "order_status": "Submitted",
+          "paymentReceived": "true",
+          "paymentTime": "[[app.now]]",
+          "paymentType": "VISA",
+          "reference": "AAAA-BBBB",
+          "shipmentType": "UPS",
+          "total": "[[dataCart.dataRow.total.price]]",
+          "type": "order"
+        }
+      },
+      {
+        "_id": "dataPostOrderForrester",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "title": "POST Success: [[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": true,
+              "title": "POST failed: 123[[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "error"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "success",
+            "set": {
+              "order_id": "{{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}",
+              "ordered": true
+            }
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "done",
+            "set": {
+              "alert_icon": "/images/icon_cart_20x50.png",
+              "alert_title": "Order submitted successfully!"
+            }
+          },
+          {
+            "_type": "Event",
+            "attributes": {
+              "_target": "imageButtonClose",
+              "delay": 0,
+              "eventName": "touchUp"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataDeleteCart"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Navigate",
+            "actions": [
+              {
+                "_type": "Create",
+                "actions": [],
+                "attributes": {
+                  "control.url": "/controls/bannerAlert.json",
+                  "delay": 0,
+                  "enabled": true,
+                  "parent.id": "layoutMain"
+                },
+                "on": "done"
+              },
+              {
+                "_type": "Event",
+                "attributes": {
+                  "_target": "alert",
+                  "delay": 0,
+                  "eventName": "show"
+                },
+                "on": "done"
+              },
+              {
+                "_type": "Event",
+                "attributes": {
+                  "_target": "alert",
+                  "delay": 2,
+                  "eventName": "hide"
+                },
+                "on": "done"
+              }
+            ],
+            "attributes": {
+              "animation.duration": 0,
+              "animation.type": "crossDissolve",
+              "stackType": "replace",
+              "to": "viewCategories.json"
+            },
+            "on": "done"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]",
+          "method": "POST",
+          "parseParameters.enabled": true,
+          "pathSuffix": "/[[$session.apigee_edge_version]]/orderSvc/submitOrder?apikey=[[app.apigee.edge.forrester.apikey]]"
+        },
+        "parameters": {
+          "adr": {
+            "addr1": "[[$session.user_addr1]]",
+            "addr2": "[[$session.user_addr2]]",
+            "city": "[[$session.user_city]]",
+            "state": "[[$session.user_state]]",
+            "zip": "[[$session.user_zip]]"
+          },
+          "applyTaxes": "true",
+          "currency": "USD",
+          "customer_email": "[[$session.user_email]]",
+          "customer_id": "[[$session.user_uuid]]",
+          "customer_name": "[[$session.user_name]]",
+          "isCompletedWithCancellations": "false",
+          "items": "[[dataCart.dataRow.body.string]]",
+          "name": "[[app:now]]",
+          "order_id": "[[app:now]]",
+          "order_status": "Submitted",
+          "paymentReceived": "true",
+          "paymentTime": "[[app:now]]",
+          "paymentType": "VISA",
+          "reference": "AAAA-BBBB",
+          "shipmentType": "UPS",
+          "total": "[[dataCart.dataRow.total.price]]",
+          "type": "order"
+        }
+      },
+      {
+        "_id": "dataShipOrder",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "title": "POST Success: [[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": true,
+              "title": "POST failed: [[$self.order_status]] {{ str = '[[$self.order_status]]'; str.match(/Id (.*?),/)[1] }}"
+            },
+            "on": "error"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "$session"
+            },
+            "on": "done",
+            "set": {
+              "alert_icon": "/images/icon_shipped_20x50.png",
+              "alert_title": "Order marked shipped!"
+            }
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataOrders"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Create",
+            "actions": [],
+            "attributes": {
+              "control.url": "/controls/bannerAlert.json",
+              "delay": 0,
+              "enabled": true,
+              "parent.id": "layoutMain"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Event",
+            "attributes": {
+              "_target": "alert",
+              "delay": 0,
+              "eventName": "show"
+            },
+            "on": "done"
+          },
+          {
+            "_type": "Event",
+            "attributes": {
+              "_target": "alert",
+              "delay": 2,
+              "eventName": "hide"
+            },
+            "on": "done"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]",
+          "method": "POST",
+          "pathSuffix": "/[[$session.apigee_edge_version]]/orders/[[$session.order_id]]?apikey=[[$session.apigee_edge_apikey]]"
+        },
+        "parameters": {
+          "order_status": "Shipped!"
+        }
+      },
+      {
+        "_id": "dataMonths",
+        "_type": "HTTP",
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/months.json",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "dataDays",
+        "_type": "HTTP",
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/days.json",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "dataYears",
+        "_type": "HTTP",
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/years.json",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "dataParallax",
+        "_type": "HTTP",
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/parallax.json",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "dataActivity",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "1Refresh",
+            "attributes": {
+              "_target": "dataFavoritesCache1",
+              "reloadData.enabled": false
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "how many activities? [[$self.entities.$count]]",
+              "title": "dataActivity"
+            },
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]users/[[$session.user_uuid]]/feed?apikey=[[$session.apigee_edge_apikey]]",
+          "cache.id": "favorites",
+          "data.basepath": "entities",
+          "method": "GET",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          },
+          "queryParams": {
+            "limit": 99
+          }
+        }
+      },
+      {
+        "_id": "dataActivityAd1d",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "message": "[[$self.body.string]]",
+              "title": "dataActivityAdd"
+            },
+            "enabled": true,
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]users/me/activities?apikey=[[$session.apigee_edge_apikey]]",
+          "method": "POST",
+          "body": {
+            "actor": {
+              "displayName": "Jenny D. Davidsen",
+              "uuid": "aaa65d8a-16a6-11e5-86ea-7b4f7ff44431",
+              "username": "4088675309"
+            },
+            "verb": "post",
+            "content": "Jenny likes productnameWONK?!"
+          },
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]",
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      {
+        "_id": "dataFavorites",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Alert",
+            "attributes": {
+              "enabled": false,
+              "message": "[[$self.entities.$count]]",
+              "title": "dataFavorites"
+            },
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]likes/[[$session.user_uuid]]/likes?apikey=[[$session.apigee_edge_apikey]]",
+          "cache.id": "favorites",
+          "data.basepath": "entities",
+          "sort.key": "created",
+          "sort.order": "descending",
+          "method": "GET",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "dataFavoritesAdd",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataActivityAdd"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "message": "[[$self.body.string]]",
+              "title": "dataFavoritesAdd"
+            },
+            "enabled": false,
+            "on": "success,failed"
+          },
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataFavorites"
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]likes/[[$session.user_uuid]]/likes/products/[[$session.product_uuid]]?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "POST",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          },
+          "body": {
+            "action": "like",
+            "actor": {
+              "displayName": "[[$session.user_name]]",
+              "uuid": "[[$session.user_uuid]]",
+              "email": "[[$session.user_email]]",
+              "username": "[[$session.user_username]]"
+            },
+            "product": {
+              "uuid": "[[$session.product_uuid]]",
+              "description": "[[$session.product_description]]",
+              "photos": [
+                "[[$session.product_photo_0]]",
+                "[[$session.product_photo_1]]"
+              ],
+              "price": "[[$session.product_price]]",
+              "productName": "[[$session.product_name]]"
+            },
+            "content": "[[$session.user_name]] likes [[$session.product_name]]",
+            "verb": "post"
+          }
+        }
+      },
+      {
+        "_id": "dataFavoritesDelete",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Refresh",
+            "attributes": {
+              "_target": "dataFavorites"
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Alert",
+            "attributes": {
+              "message": "[[$self.body.string]]",
+              "title": "dataFavoritesDelete"
+            },
+            "enabled": false,
+            "on": "success,failed"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "[[$session.apigee_edge_url]]/[[$session.apigee_edge_version]]/[[$session.environment_code]]likes/[[$session.user_uuid]]/likes/products/[[$session.product_uuid]]?apikey=[[$session.apigee_edge_apikey]]",
+          "data.basepath": "entities",
+          "method": "DELETE",
+          "headers": {
+            "Authorization": "Bearer [[$session.access_token]]"
+          }
+        }
+      },
+      {
+        "_id": "SimilarLikedProducts",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customSimilarLikedProducts"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/SimilarLikedProducts.json",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "NewProductsCard",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customNewProductsCard"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          },
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customNewProductsCardSpinner",
+              "delay": 0
+            },
+            "set": {
+              "visible": false
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "https://thebigz-test.apigee.net/bz-productrecommendations/customers/[[$session.user_uuid]]/recommendations",
+          "data.basepath": "entities",
+          "method": "GET"
+        }
+      },
+      {
+        "_id": "HotProductsNearYou",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customHotProductsNearYou"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/HotProductsNearYou.json",
+          "data.basepath": "entities",
+          "method": "GET",
+          "sort.order": [
+            "if :: [[$session.sortOrder]] == 0 :: descending",
+            "if :: [[$session.sortOrder]] == 1 :: ascending",
+            "if :: [[$session.sortOrder]] == 2 :: ascending",
+            "if :: [[$session.sortOrder]] == 3 :: descending",
+            "if :: [[$session.sortOrder]] == 4 :: descending"
+          ],
+          "sort.key": [
+            "if :: [[$session.sortOrder]] == 0 :: price",
+            "if :: [[$session.sortOrder]] == 1 :: rating",
+            "if :: [[$session.sortOrder]] == 2 :: created",
+            "if :: [[$session.sortOrder]] == 3 :: rating",
+            "if :: [[$session.sortOrder]] == 4 :: price"
+          ]
+        }
+      },
+      {
+        "_id": "ContentRecommendations",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customContentRecommendations"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": false,
+          "url": "/data/ContentRecommendations.json",
+          "data.basepath": "entities",
+          "method": "GET",
+          "sort.order": [
+            "if :: [[$session.sortOrder]] == 0 :: descending",
+            "if :: [[$session.sortOrder]] == 1 :: ascending",
+            "if :: [[$session.sortOrder]] == 2 :: ascending",
+            "if :: [[$session.sortOrder]] == 3 :: descending",
+            "if :: [[$session.sortOrder]] == 4 :: descending"
+          ],
+          "sort.key": [
+            "if :: [[$session.sortOrder]] == 0 :: articleTitle",
+            "if :: [[$session.sortOrder]] == 1 :: author",
+            "if :: [[$session.sortOrder]] == 2 :: origin",
+            "if :: [[$session.sortOrder]] == 3 :: likes",
+            "if :: [[$session.sortOrder]] == 4 :: comments"
+          ]
+        }
+      },
+      {
+        "_id": "OffersCard",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customOffersCard"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/OffersCard.json",
+          "data.basepath": "entities",
+          "method": "GET",
+          "sort.order": [
+            "if :: [[$session.sortOrder]] == 0 :: descending",
+            "if :: [[$session.sortOrder]] == 1 :: ascending",
+            "if :: [[$session.sortOrder]] == 2 :: ascending",
+            "if :: [[$session.sortOrder]] == 3 :: descending",
+            "if :: [[$session.sortOrder]] == 4 :: descending"
+          ],
+          "sort.key": [
+            "if :: [[$session.sortOrder]] == 0 :: description",
+            "if :: [[$session.sortOrder]] == 1 :: uuid",
+            "if :: [[$session.sortOrder]] == 2 :: created",
+            "if :: [[$session.sortOrder]] == 3 :: color",
+            "if :: [[$session.sortOrder]] == 4 :: category"
+          ]
+        }
+      },
+      {
+        "_id": "LatestReviews",
+        "_type": "HTTP",
+        "actions": [
+          {
+            "_type": "Modify",
+            "attributes": {
+              "_target": "customLatestReviews"
+            },
+            "set": {
+              "visible": true
+            },
+            "on": "success"
+          }
+        ],
+        "attributes": {
+          "autoLoad.enabled": true,
+          "url": "/data/LatestReviews.json",
+          "data.basepath": "entities",
+          "method": "GET",
+          "sort.order": [
+            "if :: [[$session.sortOrder]] == 0 :: descending",
+            "if :: [[$session.sortOrder]] == 1 :: ascending",
+            "if :: [[$session.sortOrder]] == 2 :: ascending",
+            "if :: [[$session.sortOrder]] == 3 :: descending",
+            "if :: [[$session.sortOrder]] == 4 :: descending"
+          ],
+          "sort.key": [
+            "if :: [[$session.sortOrder]] == 0 :: stars",
+            "if :: [[$session.sortOrder]] == 1 :: stars",
+            "if :: [[$session.sortOrder]] == 2 :: stars",
+            "if :: [[$session.sortOrder]] == 3 :: stars",
+            "if :: [[$session.sortOrder]] == 4 :: stars"
+          ]
+        }
+      }
+    ]
+  },
+  "session.defaults": {
+    "apigee_edge_apikey": "NlIFswV3AlHytmYAbRQDbdWhwZCUQvE5",
+    "apigee_edge_url": "http://thebigz-test.apigee.net/",
+    "environment_name": "BigZ"
+  }
+}
